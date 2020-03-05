@@ -1,0 +1,22 @@
+{
+  "name": "x-state-over-view",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gilsantosjulian/x-state.git"
+  },
+  "author": "Julian Andres Gil Santos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gilsantosjulian/x-state/issues"
+  },
+  "homepage": "https://github.com/gilsantosjulian/x-state#readme",
+  "dependencies": {
+    "xstate": "^4.8.0"
+  }
+}
