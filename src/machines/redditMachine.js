@@ -5,11 +5,26 @@ const redditMachine = Nachine({
   id: 'reddit',
   initial: 'idle',
   context: {
-    subreddit: null
+    subreddit: null,
   },
   states: {
     idle: {},
-    selected: {},
+    selected: {
+      initial: 'loading',
+      states: {
+        loading: {
+          invoke: {
+            id: 'fetch-subreddit',
+            src: invokeFetchSubreddit,
+            onDone: 'loaded',
+            onError: 'failed',
+          }
+        },
+        loaded: {},
+        failed: {},
+
+      },
+    },
   },
   on: {
     SELECT: {
@@ -25,3 +40,11 @@ const selectEvent = {
   type: 'SELECT', // event type
   name: 'reactjs' // subreddit name
 };
+
+function invokeFetchSubreddit(context) {
+  const { subreddit } = context;
+
+  return fetch(`https://www.reddit.com/r/${subreddit}.json`)
+  .then(response => response.json())
+  .then(json => json.data.children.map(child => child.data))
+}
