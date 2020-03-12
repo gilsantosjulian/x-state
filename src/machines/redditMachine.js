@@ -6,6 +6,7 @@ const redditMachine = Nachine({
   initial: 'idle',
   context: {
     subreddit: null,
+    posts: null,
   },
   states: {
     idle: {},
@@ -16,7 +17,12 @@ const redditMachine = Nachine({
           invoke: {
             id: 'fetch-subreddit',
             src: invokeFetchSubreddit,
-            onDone: 'loaded',
+            onDone: {
+              target: 'loaded',
+              actions: assign({
+                posts: (context, event) => event.data
+              })
+            },
             onError: 'failed',
           }
         },
