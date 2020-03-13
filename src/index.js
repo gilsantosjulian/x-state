@@ -4,4 +4,4 @@ import App from './app'
 
 
 const rootElement = document.getElementById('root');
-ReactDOM.render(<div>Hola Mundo</div>, rootElement);
+ReactDOM.render(<App/>, rootElement);
