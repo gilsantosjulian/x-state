@@ -1,7 +1,7 @@
-import { Machine } from 'xstate'
-import { assign } from 'xstate/lib/actionTypes';
+import { Machine, assign } from 'xstate';
+import fetch from 'node-fetch';
 
-const redditMachine = Nachine({
+export const redditMachine = Machine({
   id: 'reddit',
   initial: 'idle',
   context: {
