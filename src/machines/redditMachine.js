@@ -42,11 +42,6 @@ export const redditMachine = Machine({
   }
 });
 
-const selectEvent = {
-  type: 'SELECT', // event type
-  name: 'reactjs' // subreddit name
-};
-
 function invokeFetchSubreddit(context) {
   const { subreddit } = context;
 
