@@ -1,36 +1,17 @@
-import { Machine, assign } from 'xstate';
-import fetch from 'node-fetch';
+import {
+  Machine,
+  assign
+} from 'xstate';
 
 export const redditMachine = Machine({
   id: 'reddit',
   initial: 'idle',
   context: {
     subreddit: null,
-    posts: null,
   },
   states: {
     idle: {},
-    selected: {
-      initial: 'loading',
-      states: {
-        loading: {
-          invoke: {
-            id: 'fetch-subreddit',
-            src: invokeFetchSubreddit,
-            onDone: {
-              target: 'loaded',
-              actions: assign({
-                posts: (context, event) => event.data
-              })
-            },
-            onError: 'failed',
-          }
-        },
-        loaded: {},
-        failed: {},
-
-      },
-    },
+    selected: {},
   },
   on: {
     SELECT: {
@@ -42,10 +23,3 @@ export const redditMachine = Machine({
   }
 });
 
-function invokeFetchSubreddit(context) {
-  const { subreddit } = context;
-
-  return fetch(`https://www.reddit.com/r/${subreddit}.json`)
-  .then(response => response.json())
-  .then(json => json.data.children.map(child => child.data))
-}
