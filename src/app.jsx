@@ -20,7 +20,7 @@ const App = () => {
           return <option key={subreddit}>{subreddit}</option>;
         })}
       </select>
-      {subreddit && <Subreddit name={subreddit} key={subreddit} />}
+      {subreddit && <Subreddit service={subreddit} key={subreddit} />}
     </main>
   );
 };

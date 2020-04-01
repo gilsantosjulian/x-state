@@ -1,19 +1,9 @@
-import React, { useMemo } from 'react';
-import { useMachine } from '@xstate/react';
-import { createSubredditMachine } from "./machines/subredditMachine";
+import React from 'react';
+import { useService } from '@xstate/react';
 
-const Subreddit = ({ name }) => {
+const Subreddit = ({ service }) => {
 
-  console.log('name');
-  console.log(name);
-  
-
-  // Only create the machine based on the subreddit name once
-  const subredditMachine = useMemo(() => {
-    return createSubredditMachine(name);
-  }, [name])
-
-  const [ state, send ] = useMachine(subredditMachine);
+  const [ state, send ] = useService(service);
 
   if (state.matches('failure')) {
     return (
@@ -28,7 +18,7 @@ const Subreddit = ({ name }) => {
 
   return (
     <section
-      data-machine={subredditMachine.id}
+      data-machine={service.id}
       data-state={state.toStrings().join(' ')}
     >
       {state.matches('loading') && <div>Loading posts...</div>}
