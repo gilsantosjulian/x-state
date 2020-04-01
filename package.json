@@ -21,6 +21,7 @@
   "homepage": "https://github.com/gilsantosjulian/x-state#readme",
   "dependencies": {
     "@xstate/react": "^0.8.1",
+    "node-fetch": "^2.6.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-scripts": "^3.4.0",
